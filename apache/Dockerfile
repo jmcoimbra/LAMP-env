@@ -19,17 +19,10 @@ RUN a2enmod rewrite; \
 	chown -R root:www-data var/www; \
 	a2ensite default-ssl.conf;
 
-# Installing & configuring dnsmasq
-RUN apt-get install -y dnsmasq;
-
-COPY ./dnsmasq.conf /etc/dnsmasq.conf
-
 ####### DEV STUFF #######
 RUN apt-get install curl vim lsof -y
 
 # Finalizing...
-EXPOSE 80 443 53 53/udp
+EXPOSE 80 443
 
-COPY wrapper.sh /usr/local/bin/
-
-CMD ["wrapper.sh"]
+CMD ["apachectl", "-D", "FOREGROUND"]

@@ -1,6 +1,6 @@
 # Dockerfile source
 
-This folder holds the Dockerfile used to build the image in [Docker Hub](<url>).
+This folder holds the Docker Compose used to build the image in [Docker Hub](<url>).
 
 The command below will make you work with localhost as a top level domain (TLD) only for your machine (tested in Ubuntu 16.04):
 

@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+  apache:
+    build: ../apache
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - type: bind
+        source: /var/www
+        target: /var/www
+  dnsmasq:
+    build: ../dnsmasq
+    ports:
+      - "53535:53/tcp"
+      - "53535:53/udp"
+    cap_add:
+      - NET_ADMIN
