@@ -2,6 +2,9 @@ FROM ubuntu:18.10
 
 LABEL maintainer="jmcoimbra.eng.br"
 
+# Avoid apps to ask questions during instalation
+ENV DEBIAN_FRONTEND=noninteractive
+
 ### Installing Apache httpd
 RUN apt-get update; \
 	apt-get install -y apache2;
@@ -18,6 +21,14 @@ RUN a2enmod rewrite; \
 	gpasswd -a root www-data; \
 	chown -R root:www-data var/www; \
 	a2ensite default-ssl.conf;
+
+# Timezone information for "tzdata"
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Including PHP
+RUN apt-get update; \
+	apt-get install -y php libapache2-mod-php php-mysql;
 
 ####### DEV STUFF #######
 RUN apt-get install curl vim lsof -y
