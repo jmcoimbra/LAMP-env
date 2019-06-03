@@ -16,6 +16,16 @@ doker-compose up
 
 The `/var/lib/local-mysql` folder creation is necessary to hold all your MySQL data, so you can use this folder as a backup.
 
+To connect in this MySQL Server you can use `mysql` command, eg:
+
+```bash
+mysql -h 127.0.0.1 -P 3306 -u root -p
+```
+
+And type the password located in `docker-compose.yml` for MySQL service (usually the lastest line of this file).
+
+If you run an PHP app, then remember you will need to connect to MySQL throught the container, so you must use the name of the service as the MySQL Server host, eg.: `mysql:3306`.
+
 ### Reference
 
 [docker-compose Overview](https://docs.docker.com/compose/overview/)

@@ -12,6 +12,10 @@ services:
     depends_on:
       - mysql
       - dnsmasq
+    networks:
+      backend:
+        aliases:
+          - web
   dnsmasq:
     build: ../dnsmasq
     ports:
@@ -29,5 +33,12 @@ services:
         target: /var/lib/mysql
     command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
     restart: always
+    networks:
+      backend:
+        aliases:
+          - database
     environment:
       MYSQL_ROOT_PASSWORD: 8p85tsPrPRdCHuqc
+
+networks:
+  backend:
