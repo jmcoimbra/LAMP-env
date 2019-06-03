@@ -9,8 +9,12 @@ docker run -d -p 80:80 -p 443:443 -p 53535:53/tcp -p 53535:53/udp --cap-add=NET_
 Or you can use this `docker-compose.yml` to play with your OS as a TLD "localhost" running the following command in the terminal:
 
 ```bash
+sudo mkdir /var/lib/local-mysql
+cd docker-compose
 doker-compose up
 ```
+
+The `/var/lib/local-mysql` folder creation is necessary to hold all your MySQL data, so you can use this folder as a backup.
 
 ### Reference
 

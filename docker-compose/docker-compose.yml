@@ -9,6 +9,9 @@ services:
       - type: bind
         source: /var/www
         target: /var/www
+    depends_on:
+      - mysql
+      - dnsmasq
   dnsmasq:
     build: ../dnsmasq
     ports:
@@ -16,3 +19,15 @@ services:
       - "53535:53/udp"
     cap_add:
       - NET_ADMIN
+  mysql:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    volumes:
+      - type: bind
+        source: /var/lib/local-mysql
+        target: /var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 8p85tsPrPRdCHuqc
